@@ -13,10 +13,10 @@
     <div id="app">
        
         <div class="container">
-          <form  action="" @click="createTodo" class="btn btn-warning d-flex  ">
+          <form  action=""  class="btn btn-warning d-flex">
             <div class="form-group">
-              <label >User_id</label>
-              <input type="text" class="form-control" id="exampleInputuser_id" aria-describedby="userHelp" placeholder="Enter user_id" v-model="author_id">
+              <label >author_id</label>
+              <input type="text" class="form-control" id="exampleInputuser_id" aria-describedby="userHelp" placeholder="Enter author_id" v-model="author_id">
             </div>
             <div class="form-group">
               <label >Title</label>
@@ -24,22 +24,20 @@
             </div>
             <div class="form-group">
               <label >Description</label>
-              <input type="text" class="form-control" id="exampleInputdescription" aria-describedby="descriptionHelp" placeholder="Enter description" v-model="body">
+              <input type="text" class="form-control" id="exampleInputdescription" aria-describedby="descriptionHelp" placeholder="Enter body" v-model="body">
             </div>
             <br>
-            <button type="button" class="btn btn-primary m-3 ">Submit</button >     
+            <button v-if="!Updatefound"  @click="createquiz" type="button" class="btn btn-primary m-3 ">Create</button >     
+            <button v-else type="button" @click="updatedquize" class="btn btn-primary m-3 ">Update</button >     
           </form>
-            <div class="card m-3 border-secondary btn-warning" style="width: 25rem;;" v-for="(item, index) in quiz" :key="index"  v-if="item.status">
+            <div class="card m-3 border-secondary btn-warning" style="width: 25rem;;" v-for="(item, index) in quiz" :key="index">
                 <div class="card-body" >
                   <h5 class="card-title" >{{item.title}}</h5>
                   <p class="card-text">{{item.body}}</p>
                   <br>
-                  <br>
-                  <p class="card-text">{{item.created_at}}</p>
-                  <button type="button" @click="removeTask(index)" class="btn btn-danger">Delete</button>  
-                  <button type="button" @click="" class="btn btn-success">update</button>  
+                  <button type="button" @click="removeTask(item)" class="btn btn-danger">Delete</button>  
+                  <button type="button" @click="updatedaction(item)" class="btn btn-success">Update</button> 
                 </div>
-                
               </div>
     
         </div>
@@ -50,6 +48,6 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script src="js/app.js"></script>
+        <script src="js/quiz.js"></script>
         
 </html>
